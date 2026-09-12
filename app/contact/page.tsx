@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/site/ContactForm";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Section } from "@/components/ui/Section";
+import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -49,9 +50,11 @@ export default function ContactPage() {
             </ul>
 
             <div className="mt-8">
-              <p className="t-small text-ink">Lumi</p>
-              <p className="t-small mt-1">Keizersgracht 241, Amsterdam</p>
-              <p className="t-small">hello@lumi.example.com</p>
+              <p className="t-small text-ink">{BRAND.name}</p>
+              <p className="t-small mt-1">
+                {BRAND.address.line1}, {BRAND.address.city}
+              </p>
+              <p className="t-small">{BRAND.supportEmail}</p>
             </div>
           </div>
 

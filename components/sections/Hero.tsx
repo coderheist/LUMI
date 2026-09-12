@@ -2,6 +2,7 @@ import { ProductTag } from "@/components/lumi/ProductCard";
 import { DemoButton } from "@/components/sections/DemoButton";
 import { BackgroundVideo } from "@/components/ui/BackgroundVideo";
 import { ButtonLink } from "@/components/ui/Button";
+import { HERO_COPY } from "@/lib/data";
 import type { CSSProperties } from "react";
 
 /**
@@ -27,30 +28,35 @@ export function Hero() {
       </div>
 
       {/* Vertical scrim on small screens where the text sits over the footage;
-          horizontal on large, where the text has its own column. Lighter on the
-          right now that nothing floats there — the campaign shot carries it. */}
+          horizontal on large, where the text has its own column. The text
+          needs full opacity behind it, but the photo has to actually clear by
+          partway down — reaching from-0%/via-38% keeps the fade fast enough
+          that a real band of the section shows the photo, rather than only a
+          sliver right at the edge. */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-paper via-paper/92 to-paper/45 lg:bg-gradient-to-r lg:from-paper lg:via-paper/82 lg:to-transparent"
+        className="absolute inset-0 bg-gradient-to-b from-paper from-0% via-paper/80 via-38% to-paper/6 lg:bg-gradient-to-r lg:from-paper lg:via-paper/82 lg:to-transparent"
       />
+      {/* Blends into the next section. Short and low-opacity on its own —
+          the scrim above already does most of the fade, so this must not
+          re-cover the band it just revealed. */}
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-paper"
+        className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-b from-transparent to-paper lg:h-24"
       />
 
-      <div className="shell relative grid items-center gap-12 pt-28 pb-16 md:pt-36 md:pb-24 lg:min-h-[46rem] lg:grid-cols-12 lg:gap-10">
+      <div className="shell relative grid min-h-[30rem] items-center gap-12 pt-28 pb-16 sm:min-h-[34rem] md:pt-36 md:pb-24 lg:min-h-[46rem] lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-6">
           <p className="t-eyebrow enter" style={delay(60)}>
-            AI customer support for commerce
+            {HERO_COPY.eyebrow}
           </p>
 
           <h1 className="t-display enter-mask mt-5" style={delay(140)}>
-            <span>Turn every customer conversation into a sale.</span>
+            <span>{HERO_COPY.headline}</span>
           </h1>
 
           <p className="t-lead enter mt-7 max-w-[34rem]" style={delay(320)}>
-            Lumi answers questions, recommends products, tracks orders and resolves support
-            issues automatically — across every channel your customers use.
+            {HERO_COPY.lead}
           </p>
 
           <div className="enter mt-9 flex flex-wrap items-center gap-3" style={delay(440)}>
@@ -61,7 +67,7 @@ export function Hero() {
           </div>
 
           <p className="t-micro enter mt-5" style={delay(560)}>
-            No credit card required · Setup in minutes
+            {HERO_COPY.trustLine}
           </p>
         </div>
 

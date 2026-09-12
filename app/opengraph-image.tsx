@@ -1,12 +1,18 @@
 import { ImageResponse } from "next/og";
+import { BRAND } from "@/lib/brand";
+import { HERO_COPY } from "@/lib/data";
 
-export const alt = "Lumi — AI customer support for commerce";
+export const alt = `${BRAND.name} — ${BRAND.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
  * Social preview, generated at build time so the template ships without a
  * binary asset to keep in sync. Flexbox only — next/og does not lay out grid.
+ *
+ * Colours below are literal hex, not the CSS tokens the rest of the site
+ * uses — this renders at the edge as a plain image, with no access to
+ * app/globals.css. If you retheme the accent, update `#243b66` here too.
  */
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -37,7 +43,7 @@ export default function OpenGraphImage() {
               fontWeight: 700,
             }}
           >
-            L
+            {BRAND.name[0]}
           </div>
           <div
             style={{
@@ -48,7 +54,7 @@ export default function OpenGraphImage() {
               color: "#171513",
             }}
           >
-            Lumi
+            {BRAND.name}
           </div>
           <div
             style={{
@@ -59,7 +65,7 @@ export default function OpenGraphImage() {
               textTransform: "uppercase",
             }}
           >
-            AI support for commerce
+            {BRAND.tagline}
           </div>
         </div>
 
@@ -74,7 +80,7 @@ export default function OpenGraphImage() {
             maxWidth: 880,
           }}
         >
-          Turn every customer conversation into a sale.
+          {HERO_COPY.headline}
         </div>
 
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>

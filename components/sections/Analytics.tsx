@@ -79,7 +79,7 @@ function MetricTile({
         {metric.suffix}
       </p>
       <p className="mt-1 text-[0.86rem] text-paper/55">{metric.label}</p>
-      <p className="mt-2.5 text-[0.75rem] text-[#97c3a3]">{metric.delta} vs last quarter</p>
+      <p className="mt-2.5 text-[0.75rem] text-sage-dark">{metric.delta} vs last quarter</p>
     </div>
   );
 }
@@ -107,7 +107,7 @@ function QuestionBar({
           style={{
             width: active ? `${(row.share / 28) * 100}%` : "0%",
             transitionDelay: `${delay}ms`,
-            backgroundColor: "#5F8AE0",
+            backgroundColor: "var(--color-chart-automated)",
           }}
         />
       </div>

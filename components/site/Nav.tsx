@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ButtonLink } from "@/components/ui/Button";
 import { LumiMark } from "@/components/lumi/Chat";
+import { BRAND } from "@/lib/brand";
 import { NAV_LINKS } from "@/lib/data";
 import { useScrolled } from "@/lib/hooks";
 
@@ -40,9 +41,13 @@ export function Nav() {
       }`}
     >
       <nav className="shell flex h-16 items-center gap-6 md:h-[4.5rem]" aria-label="Main">
-        <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="Lumi — home">
+        <Link
+          href="/"
+          className="flex shrink-0 items-center gap-2.5"
+          aria-label={`${BRAND.name} — home`}
+        >
           <LumiMark />
-          <span className="text-[1.05rem] font-semibold tracking-[-0.035em]">Lumi</span>
+          <span className="text-[1.05rem] font-semibold tracking-[-0.035em]">{BRAND.name}</span>
         </Link>
 
         <ul className="ml-4 hidden items-center gap-1 lg:flex">

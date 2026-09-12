@@ -40,19 +40,19 @@ export function ReturnAction({ dark = false, shown = true }: { dark?: boolean; s
 
       <div
         className={`mt-4 flex items-center gap-2 rounded-card border px-3.5 py-2.5 ${
-          dark ? "border-[#3c6048] bg-[#18301f]" : "border-sage/20 bg-sage-tint"
+          dark ? "border-sage-dark-tint-line bg-sage-dark-tint" : "border-sage/20 bg-sage-tint"
         }`}
       >
         <svg
           viewBox="0 0 12 12"
-          className={`h-3.5 w-3.5 ${dark ? "text-[#97c3a3]" : "text-sage"}`}
+          className={`h-3.5 w-3.5 ${dark ? "text-sage-dark" : "text-sage"}`}
           fill="none"
           stroke="currentColor"
           strokeWidth="1.8"
         >
           <path d="M2.5 6.3 4.7 8.5 9.5 3.7" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        <p className={`text-[0.82rem] font-medium ${dark ? "text-[#97c3a3]" : "text-sage"}`}>
+        <p className={`text-[0.82rem] font-medium ${dark ? "text-sage-dark" : "text-sage"}`}>
           Eligible for return
         </p>
       </div>
@@ -80,7 +80,7 @@ export function ReturnAction({ dark = false, shown = true }: { dark?: boolean; s
           className={`mt-3 w-full rounded-[10px] px-3 py-2.5 text-[0.85rem] font-medium transition-colors duration-200 ${
             dark
               ? "bg-paper text-ink hover:bg-white"
-              : "bg-ink text-paper hover:bg-[#262220]"
+              : "bg-ink text-paper hover:bg-ink-hover"
           }`}
         >
           Start return

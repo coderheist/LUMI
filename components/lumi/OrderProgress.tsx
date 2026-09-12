@@ -37,7 +37,7 @@ export function OrderProgress({ dark = false, shown = true }: { dark?: boolean; 
                   aria-hidden
                   style={{ "--draw-delay": `${index * 140}ms` } as React.CSSProperties}
                   className={`draw-line absolute left-[7px] top-4 h-full w-px ${
-                    done ? (dark ? "bg-[#4c7a5b]" : "bg-sage/40") : dark ? "bg-indigo-line" : "bg-line"
+                    done ? (dark ? "bg-sage-dark-line" : "bg-sage/40") : dark ? "bg-indigo-line" : "bg-line"
                   }`}
                 />
               ) : null}
@@ -47,11 +47,11 @@ export function OrderProgress({ dark = false, shown = true }: { dark?: boolean; 
                 className={`relative mt-1 grid h-[15px] w-[15px] shrink-0 place-items-center rounded-full border ${
                   done
                     ? dark
-                      ? "border-[#4c7a5b] bg-[#4c7a5b]"
+                      ? "border-sage-dark-line bg-sage-dark-line"
                       : "border-sage bg-sage"
                     : active
                       ? dark
-                        ? "border-[#8ea8d8] bg-[#8ea8d8]"
+                        ? "border-indigo-dark-active bg-indigo-dark-active"
                         : "border-indigo bg-indigo"
                       : dark
                         ? "border-indigo-line bg-transparent"
@@ -90,21 +90,21 @@ export function OrderProgress({ dark = false, shown = true }: { dark?: boolean; 
 
       <div
         className={`mt-2 flex items-center justify-between gap-3 rounded-card border px-3.5 py-3 ${
-          dark ? "border-[#3c6048] bg-[#18301f]" : "border-sage/20 bg-sage-tint"
+          dark ? "border-sage-dark-tint-line bg-sage-dark-tint" : "border-sage/20 bg-sage-tint"
         }`}
       >
         <div>
-          <p className={`text-[0.8rem] font-medium ${dark ? "text-[#97c3a3]" : "text-sage"}`}>
+          <p className={`text-[0.8rem] font-medium ${dark ? "text-sage-dark" : "text-sage"}`}>
             Arriving today
           </p>
-          <p data-numeric className={`text-[0.75rem] ${dark ? "text-[#97c3a3]/70" : "text-sage/75"}`}>
+          <p data-numeric className={`text-[0.75rem] ${dark ? "text-sage-dark/70" : "text-sage/75"}`}>
             {DEMO_ORDER.window}
           </p>
         </div>
         <button
           className={`rounded-[8px] border px-2.5 py-1.5 text-[0.75rem] font-medium transition-colors duration-200 ${
             dark
-              ? "border-[#4c7a5b] text-[#97c3a3] hover:bg-[#1f3d28]"
+              ? "border-sage-dark-line text-sage-dark hover:bg-sage-dark-tint-hover"
               : "border-sage/30 text-sage hover:bg-sage/10"
           }`}
         >

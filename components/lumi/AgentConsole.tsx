@@ -119,7 +119,7 @@ function Case({
         {opening.shown >= 2 && !answered ? (
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-[#8ea8d8]/12 to-transparent motion-safe:animate-[m-sweep_2.1s_var(--ease-out-quint)_infinite]"
+            className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-indigo-dark-active/12 to-transparent motion-safe:animate-[m-sweep_2.1s_var(--ease-out-quint)_infinite]"
           />
         ) : null}
 
@@ -144,9 +144,9 @@ function Case({
                   aria-hidden
                   className={`mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full border ${
                     done
-                      ? "border-[#4c7a5b] bg-[#4c7a5b]"
+                      ? "border-sage-dark-line bg-sage-dark-line"
                       : busy
-                        ? "border-[#8ea8d8]"
+                        ? "border-indigo-dark-active"
                         : "border-indigo-line"
                   }`}
                 >
@@ -155,7 +155,7 @@ function Case({
                       <path d="M2 5.2 4 7.2 8 3" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   ) : busy ? (
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#8ea8d8] animate-blink" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-indigo-dark-active animate-blink" />
                   ) : null}
                 </span>
 

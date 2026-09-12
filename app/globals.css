@@ -15,6 +15,7 @@
   --color-paper-tint: #e8e3db;
 
   --color-ink: #171513;
+  --color-ink-hover: #262220;
   --color-ink-soft: #6a655d;
   --color-ink-faint: #9a948b;
 
@@ -32,6 +33,33 @@
   --color-sage-tint: #e7ede8;
   --color-ochre: #9a6b1f;
   --color-ochre-tint: #f4ecde;
+
+  /* Dark-surface variants — status colour and the agent accent, restated as
+     brighter steps for the near-black chat panels (AgentConsole, and any
+     <ChatShell tone="dark">). A flat colour swap on the light-mode tokens
+     above would not have enough contrast on indigo-ink, so these are
+     separate steps of the same hue rather than an opacity trick. To retheme
+     the agent's accent, change --color-indigo and this whole block together. */
+  --color-sage-dark: #97c3a3;
+  --color-sage-dark-line: #4c7a5b;
+  --color-sage-dark-tint: #18301f;
+  --color-sage-dark-tint-line: #3c6048;
+  --color-sage-dark-tint-hover: #1f3d28;
+
+  --color-indigo-dark: #7e9bd0;
+  --color-indigo-dark-active: #8ea8d8;
+  --color-indigo-dark-mark: #31487a;
+  --color-indigo-dark-chip-line: #32436b;
+  --color-indigo-dark-chip-tint: #16213a;
+  --color-indigo-dark-chip-ink: #a8bde2;
+
+  --color-ochre-dark: #c79a4f;
+
+  /* Validated against the dark chat surface for colour-vision deficiency —
+     see VolumeChart.tsx. Change together, and re-run the dataviz skill's
+     validator on the new pair before shipping a retheme. */
+  --color-chart-automated: #5f8ae0;
+  --color-chart-escalated: #c08438;
 
   --font-display: var(--font-archivo), "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-sans: var(--font-archivo), "Archivo", "Helvetica Neue", Arial, sans-serif;

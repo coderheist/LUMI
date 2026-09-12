@@ -1,6 +1,6 @@
 # Lumi
 
-A premium marketing template for an AI customer-support and shopping agent built for ecommerce brands.
+A premium Next.js template for an AI customer-support and shopping agent built for ecommerce brands.
 
 Two brands appear throughout, and they stay separate on purpose:
 
@@ -8,6 +8,22 @@ Two brands appear throughout, and they stay separate on purpose:
 - **NOVA** is the fictional fashion store used as the customer, and owns the catalogue, orders and policies.
 
 Keeping them distinct is what makes the demo read as a real SaaS product serving a real merchant rather than as a generic AI landing page.
+
+## Licence
+
+This template is commercial software, licensed per end product — see [`LICENSE.md`](./LICENSE.md) before you use it in a project. Release history for the template itself (not the fictional in-app changelog) is in [`CHANGELOG.md`](./CHANGELOG.md).
+
+## Rebranding this in ten minutes
+
+Three files, in this order:
+
+1. **`lib/brand.ts`** — product name, tagline, domain, contact details, social links, and the fictional demo-customer name. This drives the nav, footer, page metadata, Open Graph image, sitemap, and every "Lumi for ___" header in the demos.
+2. **`app/globals.css`** (`@theme` block, top of the file) — colour, type, radii, shadows and motion timing. See "Design tokens" below for the one rule worth knowing before you touch the palette.
+3. **`lib/data.ts`** — the product catalogue, pricing plans, FAQs, blog posts and every demo conversation script.
+
+Then run a project-wide search for the literal string `"Lumi"` — anything left is a prose mention inside marketing copy (e.g. "point Lumi at your policies") rather than a structural reference, and is yours to rewrite by hand or find-and-replace.
+
+Media (photography and video) is a separate system — see "Images and video" below.
 
 ## Running it
 
@@ -50,7 +66,7 @@ Colour, type, radii and shadows are declared once in the `@theme` block at the t
 
 One rule is worth keeping when you change the palette: **ink carries the merchant's own commerce UI, and the accent is reserved for the agent** — retrieval, confidence, context chips, charts. That separation is what keeps two brands legible on one page.
 
-The chart palette (`#5F8AE0` automated, `#C08438` escalated) was validated for colour-vision deficiency against the dark chart surface — ΔE 24.1 protan, 22.5 tritan, both inside the lightness band and above the chroma floor. If you change it, re-validate rather than eyeballing it.
+Every colour used anywhere in the app — including the dark chat panels' brighter steps of sage/indigo/ochre, and the chart's two series — is a named token in this block (`--color-sage-dark`, `--color-chart-automated`, and so on). No component hard-codes a hex value, so a full retheme touches this one file. The chart pair (`--color-chart-automated`, `--color-chart-escalated`) was validated for colour-vision deficiency against the dark chart surface — ΔE 24.1 protan, 22.5 tritan, both inside the lightness band and above the chroma floor. If you change it, re-validate rather than eyeballing it — the `dataviz` skill's palette validator is built for exactly this.
 
 ### Images and video
 
@@ -71,9 +87,11 @@ Three components consume this: `<Media>` for stills, `<VideoFrame>` for a framed
 
 ### Motion
 
-`<Reveal>` handles entrances — opacity plus an 8px rise, once, with an optional stagger. The demos play their scripts through `useConversation` and `useRetrieval`.
+`<Reveal>` handles entrances. Where the browser supports CSS scroll-driven animations (`animation-timeline: view()` — Chrome/Edge 115+, Safari 26+), the entrance is linked directly to scroll position and runs on the compositor; Firefox and older browsers fall back to a one-shot IntersectionObserver transition. Both paths share the same five variants (`rise`, `slide`, `scale`, `open`, `blur`) and the same duration/easing tokens from `globals.css`. The demos themselves play their scripts through `useConversation` and `useRetrieval`, driven by a script's own timeline rather than scroll — a separate `.turn-in` class keeps those from being overridden by the scroll-linked entrance.
 
 Under `prefers-reduced-motion`, every demo renders its resolved final state instead of animating to it, and video autoplay is dropped in favour of controls. Reveals are a progressive enhancement: without JavaScript the content is simply present.
+
+Video loops are intersection-gated: `preload="none"` and no `autoplay` attribute, so an off-screen clip downloads and decodes nothing until it is actually about to be on screen, and pauses again once it scrolls away. On a page with more than one loop this matters — see `components/ui/VideoFrame.tsx` and `BackgroundVideo.tsx`.
 
 ## Before you publish
 
@@ -86,6 +104,11 @@ Three things are deliberately inert:
 Also: every metric, order, conversation and customer story in this template is illustrative demo data, and is labelled as such throughout. If you replace a number with a real one, it becomes a claim and needs a source. The security section lists capabilities rather than asserting that any certification has been audited or granted — keep it that way unless yours have.
 
 NOVA, Morrow, Aster, Common Goods, Northline and Luma are fictional brands invented for this template.
+
+Two small audits before launch:
+
+- `pendingAssets()` in `lib/assets.ts` lists every image key with no file at all — anything still there renders a placeholder plate in production.
+- `provisionalAssets()` lists images cut from a low-resolution source rather than a full export, which look soft at large sizes. `ASSET_BRIEF.md` has the full shot list either way.
 
 ## Stack
 

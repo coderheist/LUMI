@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { LumiMark } from "@/components/lumi/Chat";
+import { BRAND } from "@/lib/brand";
+import { CUSTOMER_BRANDS } from "@/lib/data";
 
 const COLUMNS = [
   {
@@ -38,28 +40,26 @@ const COLUMNS = [
   },
 ] as const;
 
-const SOCIAL = [
-  { label: "X", href: "https://x.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Instagram", href: "https://instagram.com" },
-] as const;
-
 export function Footer() {
   return (
     <footer className="border-t border-line bg-paper-sunken">
       <div className="shell py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Link href="/" className="flex items-center gap-2.5" aria-label="Lumi — home">
+            <Link
+              href="/"
+              className="flex items-center gap-2.5"
+              aria-label={`${BRAND.name} — home`}
+            >
               <LumiMark />
-              <span className="text-[1.05rem] font-semibold tracking-[-0.035em]">Lumi</span>
+              <span className="text-[1.05rem] font-semibold tracking-[-0.035em]">{BRAND.name}</span>
             </Link>
             <p className="t-small mt-4 max-w-[30ch]">
               The AI support and shopping agent for ecommerce brands. Answers, recommends and
               resolves — then hands over when it should.
             </p>
             <div className="mt-6 flex gap-2">
-              {SOCIAL.map((item) => (
+              {BRAND.social.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
@@ -95,10 +95,12 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-line pt-7 md:flex-row md:items-center md:justify-between">
-          <p className="t-micro">© {new Date().getFullYear()} Lumi. A template demonstration.</p>
+          <p className="t-micro">
+            © {new Date().getFullYear()} {BRAND.name}. A template demonstration.
+          </p>
           <p className="t-micro max-w-[62ch]">
-            NOVA, Morrow, Aster, Common Goods, Northline and Luma are fictional brands. All metrics,
-            conversations and orders shown are illustrative demo data.
+            {CUSTOMER_BRANDS.join(", ")} are fictional brands. All metrics, conversations and orders
+            shown are illustrative demo data.
           </p>
         </div>
       </div>

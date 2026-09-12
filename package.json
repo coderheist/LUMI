@@ -1,8 +1,9 @@
 {
-  "name": "lumi",
+  "name": "lumi-template",
   "version": "1.0.0",
   "private": true,
-  "description": "Lumi — AI customer-support and shopping agent for modern ecommerce brands.",
+  "description": "Lumi — a premium Next.js template for an AI customer-support and shopping agent, built for ecommerce brands.",
+  "license": "SEE LICENSE IN LICENSE.md",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

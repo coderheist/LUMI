@@ -9,6 +9,24 @@
  * Every metric here is illustrative demo data, not a factual claim.
  */
 
+/**
+ * Homepage hero and closing CTA copy. Pulled into one place — unlike every
+ * other section, these two don't have a natural data shape of their own, so
+ * without this they'd be the only sections with copy sitting in the JSX.
+ */
+export const HERO_COPY = {
+  eyebrow: "AI customer support for commerce",
+  headline: "Turn every customer conversation into a sale.",
+  lead: "Lumi answers questions, recommends products, tracks orders and resolves support issues automatically — across every channel your customers use.",
+  trustLine: "No credit card required · Setup in minutes",
+} as const;
+
+export const FINAL_CTA_COPY = {
+  headline: "Let your team focus on customers. Let Lumi handle the questions.",
+  lead: "Start automating your customer conversations today.",
+  trustLine: "No credit card required · Setup in minutes",
+} as const;
+
 export const NAV_LINKS = [
   { label: "Product", href: "/features" },
   { label: "Solutions", href: "/use-cases" },
@@ -520,6 +538,58 @@ export const STORIES = [
     before: { label: "Return-related tickets", value: "1,240/mo" },
     after: { label: "Return-related tickets", value: "310/mo" },
     image: "editorial-female-walking",
+  },
+] as const;
+
+/* ------------------------------------------------------------ ROI calculator
+   The business model behind the /pricing calculator, in one place — a buyer
+   retargeting this template to a different vertical only needs to edit here,
+   not hunt through the component. */
+
+/** Stated plainly next to the result, because a calculator that hides its
+ *  assumptions is just a number generator. */
+export const ROI_ASSUMPTIONS = {
+  minutesPerConversation: 6,
+  lumiAutomationCeiling: 0.72,
+  assistedPurchaseRate: 0.04,
+} as const;
+
+export const ROI_INPUTS = [
+  {
+    key: "conversations",
+    label: "Conversations per month",
+    min: 500,
+    max: 40000,
+    step: 500,
+    initial: 6000,
+    format: (value: number) => value.toLocaleString("en-GB"),
+  },
+  {
+    key: "cost",
+    label: "Support cost per hour",
+    min: 12,
+    max: 90,
+    step: 1,
+    initial: 28,
+    format: (value: number) => `$${value}`,
+  },
+  {
+    key: "aov",
+    label: "Average order value",
+    min: 25,
+    max: 600,
+    step: 5,
+    initial: 140,
+    format: (value: number) => `$${value}`,
+  },
+  {
+    key: "automation",
+    label: "Conversations you automate today",
+    min: 0,
+    max: 70,
+    step: 1,
+    initial: 22,
+    format: (value: number) => `${value}%`,
   },
 ] as const;
 

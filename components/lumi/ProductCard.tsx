@@ -48,7 +48,7 @@ export function ProductCardCompact({
           <button className="rounded-[8px] border border-line-strong px-2.5 py-1 text-[0.74rem] font-medium transition-colors duration-200 hover:border-ink">
             View product
           </button>
-          <button className="rounded-[8px] bg-ink px-2.5 py-1 text-[0.74rem] font-medium text-paper transition-colors duration-200 hover:bg-[#262220]">
+          <button className="rounded-[8px] bg-ink px-2.5 py-1 text-[0.74rem] font-medium text-paper transition-colors duration-200 hover:bg-ink-hover">
             Add to cart
           </button>
           {match !== undefined ? (

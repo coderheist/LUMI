@@ -4,53 +4,7 @@ import { useState } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHead } from "@/components/ui/Section";
 import { useTween } from "@/lib/hooks";
-
-/** Stated plainly next to the result, because a calculator that hides its
- *  assumptions is just a number generator. */
-const ASSUMPTIONS = {
-  minutesPerConversation: 6,
-  lumiAutomationCeiling: 0.72,
-  assistedPurchaseRate: 0.04,
-};
-
-const INPUTS = [
-  {
-    key: "conversations",
-    label: "Conversations per month",
-    min: 500,
-    max: 40000,
-    step: 500,
-    initial: 6000,
-    format: (value: number) => value.toLocaleString("en-GB"),
-  },
-  {
-    key: "cost",
-    label: "Support cost per hour",
-    min: 12,
-    max: 90,
-    step: 1,
-    initial: 28,
-    format: (value: number) => `$${value}`,
-  },
-  {
-    key: "aov",
-    label: "Average order value",
-    min: 25,
-    max: 600,
-    step: 5,
-    initial: 140,
-    format: (value: number) => `$${value}`,
-  },
-  {
-    key: "automation",
-    label: "Conversations you automate today",
-    min: 0,
-    max: 70,
-    step: 1,
-    initial: 22,
-    format: (value: number) => `${value}%`,
-  },
-] as const;
+import { ROI_ASSUMPTIONS as ASSUMPTIONS, ROI_INPUTS as INPUTS } from "@/lib/data";
 
 type Key = (typeof INPUTS)[number]["key"];
 

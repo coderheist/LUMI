@@ -4,6 +4,7 @@ import "./globals.css";
 import { LumiWidget } from "@/components/lumi/LumiWidget";
 import { Footer } from "@/components/site/Footer";
 import { Nav } from "@/components/site/Nav";
+import { BRAND } from "@/lib/brand";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -11,18 +12,15 @@ const archivo = Archivo({
   variable: "--font-archivo",
 });
 
-const DESCRIPTION =
-  "Lumi is the AI support and shopping agent for ecommerce brands. It answers product and policy " +
-  "questions, recommends products, tracks orders and starts returns — then hands over to a person " +
-  "with full context when it should.";
+const TITLE = `${BRAND.name} — ${BRAND.tagline}`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lumi.example.com"),
+  metadataBase: new URL(BRAND.domain),
   title: {
-    default: "Lumi — AI customer support for commerce",
-    template: "%s · Lumi",
+    default: TITLE,
+    template: `%s · ${BRAND.name}`,
   },
-  description: DESCRIPTION,
+  description: BRAND.description,
   keywords: [
     "AI customer support",
     "ecommerce support automation",
@@ -31,20 +29,20 @@ export const metadata: Metadata = {
     "returns automation",
     "Shopify AI agent",
   ],
-  authors: [{ name: "Lumi" }],
+  authors: [{ name: BRAND.name }],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "Lumi",
-    title: "Lumi — AI customer support for commerce",
-    description: DESCRIPTION,
+    siteName: BRAND.name,
+    title: TITLE,
+    description: BRAND.description,
     url: "/",
-    locale: "en_GB",
+    locale: BRAND.ogLocale,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lumi — AI customer support for commerce",
-    description: DESCRIPTION,
+    title: TITLE,
+    description: BRAND.description,
   },
   robots: {
     index: true,
@@ -64,11 +62,11 @@ export const viewport: Viewport = {
 const STRUCTURED_DATA = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Lumi",
+  name: BRAND.name,
   applicationCategory: "BusinessApplication",
   applicationSubCategory: "Customer support automation",
   operatingSystem: "Web",
-  description: DESCRIPTION,
+  description: BRAND.description,
   offers: [
     { "@type": "Offer", name: "Starter", price: "49", priceCurrency: "USD" },
     { "@type": "Offer", name: "Growth", price: "149", priceCurrency: "USD" },
@@ -77,7 +75,7 @@ const STRUCTURED_DATA = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={archivo.variable}>
+    <html lang={BRAND.locale} className={archivo.variable}>
       <body>
         {/* Scroll reveals are a progressive enhancement: without JS the
             content is simply present. */}

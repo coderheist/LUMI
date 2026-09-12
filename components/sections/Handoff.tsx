@@ -93,7 +93,7 @@ export function Handoff() {
                     ))}
                   </div>
 
-                  <button className="mt-5 w-full rounded-[10px] bg-ink px-3 py-2.5 text-[0.88rem] font-medium text-paper transition-colors duration-200 hover:bg-[#262220]">
+                  <button className="mt-5 w-full rounded-[10px] bg-ink px-3 py-2.5 text-[0.88rem] font-medium text-paper transition-colors duration-200 hover:bg-ink-hover">
                     Take over conversation
                   </button>
                 </div>

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { BRAND } from "@/lib/brand";
 
 /**
  * Conversation atoms shared by every demo on the site.
@@ -11,7 +12,7 @@ import type { ReactNode } from "react";
 export function ChatShell({
   children,
   channel,
-  subject = "NOVA",
+  subject = BRAND.demoCustomer,
   status = "Online",
   className = "",
   floating = false,
@@ -51,7 +52,8 @@ export function ChatShell({
               dark ? "text-paper" : ""
             }`}
           >
-            Lumi <span className={dark ? "text-paper/45" : "text-ink-faint"}>for</span> {subject}
+            {BRAND.name} <span className={dark ? "text-paper/45" : "text-ink-faint"}>for</span>{" "}
+            {subject}
           </p>
           <p className={`truncate text-[0.75rem] ${dark ? "text-paper/45" : "text-ink-faint"}`}>
             {channel}
@@ -60,12 +62,12 @@ export function ChatShell({
         <span
           className={`flex items-center gap-1.5 rounded-chip px-2 py-1 text-[0.66rem] font-medium ${
             dark
-              ? "border border-[#3c6048] bg-[#18301f] text-[#97c3a3]"
+              ? "border border-sage-dark-tint-line bg-sage-dark-tint text-sage-dark"
               : "border border-sage/25 bg-sage-tint text-sage"
           }`}
         >
           <span
-            className={`h-1.5 w-1.5 rounded-full animate-blink ${dark ? "bg-[#97c3a3]" : "bg-sage"}`}
+            className={`h-1.5 w-1.5 rounded-full animate-blink ${dark ? "bg-sage-dark" : "bg-sage"}`}
           />
           {status}
         </span>
@@ -92,7 +94,7 @@ export function LumiMark({
   tone?: "default" | "dark" | "bare";
 }) {
   const background =
-    tone === "dark" ? "bg-[#31487a]" : tone === "bare" ? "" : "bg-indigo";
+    tone === "dark" ? "bg-indigo-dark-mark" : tone === "bare" ? "" : "bg-indigo";
 
   return (
     <span
@@ -117,8 +119,8 @@ const ACTOR_STYLE: Record<Actor, string> = {
 
 const DARK_ACTOR_STYLE: Record<Actor, string> = {
   customer: "rounded-[16px] rounded-br-[5px] bg-white/[0.07] text-paper",
-  lumi: "rounded-[16px] rounded-bl-[5px] border border-indigo-line bg-indigo-ink-raised border-l-2 border-l-[#7e9bd0] text-paper",
-  human: "rounded-[16px] rounded-bl-[5px] border border-indigo-line bg-indigo-ink-raised border-l-2 border-l-[#c79a4f] text-paper",
+  lumi: "rounded-[16px] rounded-bl-[5px] border border-indigo-line bg-indigo-ink-raised border-l-2 border-l-indigo-dark text-paper",
+  human: "rounded-[16px] rounded-bl-[5px] border border-indigo-line bg-indigo-ink-raised border-l-2 border-l-ochre-dark text-paper",
 };
 
 export function Turn({
@@ -196,7 +198,7 @@ export function StatusRow({
           data-numeric
           className={`inline-flex items-center gap-1.5 rounded-chip px-2.5 py-1.5 text-[0.74rem] font-medium ${
             dark
-              ? "border border-[#3c6048] bg-[#18301f] text-[#97c3a3]"
+              ? "border border-sage-dark-tint-line bg-sage-dark-tint text-sage-dark"
               : "border border-sage/20 bg-sage-tint text-sage"
           }`}
         >
@@ -232,7 +234,7 @@ export function SourceChips({
           key={source}
           className={`rounded-[7px] px-2 py-1 text-[0.7rem] font-medium ${
             dark
-              ? "border border-[#32436b] bg-[#16213a] text-[#a8bde2]"
+              ? "border border-indigo-dark-chip-line bg-indigo-dark-chip-tint text-indigo-dark-chip-ink"
               : "border border-indigo/15 bg-indigo-tint text-indigo"
           }`}
         >

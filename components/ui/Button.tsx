@@ -7,7 +7,7 @@ type Size = "sm" | "md" | "lg";
 const VARIANTS: Record<Variant, string> = {
   // Ink, not indigo: the primary action belongs to the merchant's own UI.
   primary:
-    "bg-ink text-paper border border-ink hover:bg-[#262220] active:translate-y-px",
+    "bg-ink text-paper border border-ink hover:bg-ink-hover active:translate-y-px",
   // Indigo is Lumi's colour — used where the action starts the agent.
   accent:
     "bg-indigo text-white border border-indigo hover:bg-indigo-hover active:translate-y-px",

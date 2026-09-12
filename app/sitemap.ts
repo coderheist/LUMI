@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { BRAND } from "@/lib/brand";
 import { POSTS } from "@/lib/data";
 
-const BASE = "https://lumi.example.com";
+const BASE = BRAND.domain;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [

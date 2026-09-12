@@ -2,6 +2,7 @@ import { DemoButton } from "@/components/sections/DemoButton";
 import { ButtonLink } from "@/components/ui/Button";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
+import { FINAL_CTA_COPY } from "@/lib/data";
 
 /**
  * The one centred composition on the site. Everything else is left-aligned
@@ -17,14 +18,12 @@ export function FinalCta() {
 
       <div className="shell relative py-28 text-center md:py-40">
         <Reveal>
-          <h2 className="t-h1 mx-auto max-w-[20ch] text-paper">
-            Let your team focus on customers. Let Lumi handle the questions.
-          </h2>
+          <h2 className="t-h1 mx-auto max-w-[20ch] text-paper">{FINAL_CTA_COPY.headline}</h2>
         </Reveal>
 
         <Reveal delay={90}>
           <p className="mx-auto mt-6 max-w-[48ch] text-[1.1rem] leading-relaxed text-paper/75">
-            Start automating your customer conversations today.
+            {FINAL_CTA_COPY.lead}
           </p>
         </Reveal>
 
@@ -40,9 +39,7 @@ export function FinalCta() {
         </Reveal>
 
         <Reveal delay={220}>
-          <p className="mt-6 text-[0.8rem] text-paper/55">
-            No credit card required · Setup in minutes
-          </p>
+          <p className="mt-6 text-[0.8rem] text-paper/55">{FINAL_CTA_COPY.trustLine}</p>
         </Reveal>
       </div>
     </section>

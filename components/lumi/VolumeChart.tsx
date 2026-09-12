@@ -11,8 +11,8 @@ import { VOLUME_SERIES } from "@/lib/data";
  * (tritan), both inside the lightness band and above the chroma floor.
  */
 const SERIES = {
-  automated: { label: "Resolved by Lumi", colour: "#5F8AE0" },
-  escalated: { label: "Escalated to a person", colour: "#C08438" },
+  automated: { label: "Resolved by Lumi", colour: "var(--color-chart-automated)" },
+  escalated: { label: "Escalated to a person", colour: "var(--color-chart-escalated)" },
 } as const;
 
 const RANGES = [

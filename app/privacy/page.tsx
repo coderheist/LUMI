@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LegalDoc, type LegalSection } from "@/components/site/LegalDoc";
 import { PageHeader } from "@/components/site/PageHeader";
+import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "Privacy",
@@ -53,7 +54,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "Contact",
     paragraphs: [
-      "Questions about this policy, or a data processing agreement, can be sent to privacy@lumi.example.com.",
+      `Questions about this policy, or a data processing agreement, can be sent to ${BRAND.privacyEmail}.`,
     ],
   },
 ];
