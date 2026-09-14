@@ -1,75 +1,110 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Lumi design tokens
-   Canvas is warm paper; ink is warm black. One accent: vat indigo,
-   the dye in NOVA's denim. Indigo is reserved for Lumi's intelligence
-   (retrieval, confidence, agent state). Ink carries NOVA commerce and
-   all neutral UI. Keeping those two separate is a system rule, not a
-   preference — the brief requires NOVA and Lumi to read as distinct.
+   Lumi design tokens — sunset palette
+   Canvas is warm cream; ink is warm near-black. One accent: sunset coral.
+   The token names below still say "indigo", "paper" and "chrome" — those
+   names describe a *role* in the system (the agent's accent; the site
+   canvas; the fixed chat chrome), not a literal hue or literal light/dark
+   surface, and renaming them would churn every component that reads them
+   for no visual gain. Where a token's value now points the opposite
+   direction from what its name suggests, there is a comment on that
+   token explaining the inversion. Indigo (now coral) is still reserved for
+   Lumi's intelligence; ink still carries NOVA commerce and neutral UI.
    ------------------------------------------------------------------ */
 @theme {
-  --color-paper: #f7f5f2;
-  --color-paper-raised: #fdfcfb;
-  --color-paper-sunken: #efebe5;
-  --color-paper-tint: #e8e3db;
+  --color-paper: #fff9ef;
+  --color-paper-raised: #fffdf7;
+  --color-paper-sunken: #fff6e6;
+  --color-paper-tint: #f6ede1;
 
-  --color-ink: #171513;
-  --color-ink-hover: #262220;
-  --color-ink-soft: #6a655d;
-  --color-ink-faint: #9a948b;
+  --color-ink: #1d1a17;
+  --color-ink-hover: #2c2723;
+  --color-ink-soft: #5c534a;
+  --color-ink-faint: #a2958a;
 
-  --color-line: #e3ded6;
-  --color-line-strong: #cfc8bd;
+  --color-line: #f0e3d2;
+  --color-line-strong: #e0cdb4;
 
-  --color-indigo: #243b66;
-  --color-indigo-hover: #1b2e52;
-  --color-indigo-tint: #e8ebf2;
-  --color-indigo-ink: #0d1426;
-  --color-indigo-ink-raised: #151e35;
-  --color-indigo-line: #27324d;
+  /* The accent. Named "indigo" throughout the codebase; sunset coral now. */
+  --color-indigo: #d9401a;
+  --color-indigo-hover: #b83413;
+  --color-indigo-tint: #fff2e2;
 
-  --color-sage: #3e5c47;
-  --color-sage-tint: #e7ede8;
-  --color-ochre: #9a6b1f;
-  --color-ochre-tint: #f4ecde;
+  /* INVERTED: --color-indigo-ink/-ink-raised/-line were formerly the
+     near-black background of the fixed chat chrome (AgentConsole, any
+     <ChatShell tone="dark">). There are no dark surfaces in this palette, so
+     that chrome is now a light panel — these three tokens keep their names
+     (every dark-tone component reads them as "the chat panel's own
+     background/border") but now hold light values instead of near-black
+     ones. */
+  --color-indigo-ink: #fff9ef;
+  --color-indigo-ink-raised: #fffdf7;
+  --color-indigo-line: #f0e3d2;
 
-  /* Dark-surface variants — status colour and the agent accent, restated as
-     brighter steps for the near-black chat panels (AgentConsole, and any
-     <ChatShell tone="dark">). A flat colour swap on the light-mode tokens
-     above would not have enough contrast on indigo-ink, so these are
-     separate steps of the same hue rather than an opacity trick. To retheme
-     the agent's accent, change --color-indigo and this whole block together. */
-  --color-sage-dark: #97c3a3;
-  --color-sage-dark-line: #4c7a5b;
-  --color-sage-dark-tint: #18301f;
-  --color-sage-dark-tint-line: #3c6048;
-  --color-sage-dark-tint-hover: #1f3d28;
+  /* Fixed semantic roles, held everywhere the two appear: sage marks a
+     resolved or automated state (an answer closed without a person, a step
+     Lumi completed on its own); ochre marks escalated or pending state (a
+     handoff, a validation error still waiting on the visitor, a queue item
+     not yet worked). Analytics, Stories and Security lean on this pairing
+     directly. */
+  --color-sage: #1a7f4f;
+  --color-sage-tint: #e8f7ef;
+  --color-ochre: #a3560f;
+  --color-ochre-tint: #fdeeda;
 
-  --color-indigo-dark: #7e9bd0;
-  --color-indigo-dark-active: #8ea8d8;
-  --color-indigo-dark-mark: #31487a;
-  --color-indigo-dark-chip-line: #32436b;
-  --color-indigo-dark-chip-tint: #16213a;
-  --color-indigo-dark-chip-ink: #a8bde2;
+  /* INVERTED: these "-dark" tokens were named for their job, not their
+     lightness — brighter steps of sage/indigo/ochre for legibility against
+     the (formerly near-black) chat chrome. That chrome is a light panel now,
+     so the legible step is a *darker*, more saturated one instead of a
+     brighter one — same job (contrast against the panel), opposite
+     direction. Renaming "-dark" to "-panel-accent" would be more honest but
+     would touch every chat component that reads these; the comment does
+     that work instead. */
+  --color-sage-dark: #146b42;
+  --color-sage-dark-line: #bce6d2;
+  --color-sage-dark-tint: #e8f7ef;
+  --color-sage-dark-tint-line: #bce6d2;
+  --color-sage-dark-tint-hover: #d9f0e3;
 
-  --color-ochre-dark: #c79a4f;
+  --color-indigo-dark: #d9401a;
+  --color-indigo-dark-active: #b83413;
+  --color-indigo-dark-mark: #ffd8a8;
+  --color-indigo-dark-chip-line: #ffd8a8;
+  --color-indigo-dark-chip-tint: #fff2e2;
+  --color-indigo-dark-chip-ink: #a33f12;
 
-  /* Validated against the dark chat surface for colour-vision deficiency —
-     see VolumeChart.tsx. Change together, and re-run the dataviz skill's
-     validator on the new pair before shipping a retheme. */
-  --color-chart-automated: #5f8ae0;
-  --color-chart-escalated: #c08438;
+  --color-ochre-dark: #a3560f;
+  --color-ochre-dark-tint: #fdeeda;
 
-  --font-display: var(--font-archivo), "Archivo", "Helvetica Neue", Arial, sans-serif;
+  /* INVERTED: this pair means "the fixed accent colour against the chat
+     panel" — formerly a light accent (--color-chrome-paper) against a dark
+     panel and a dark accent (--color-chrome-ink) for the inverted button on
+     it. The panel flipped from dark to light, so the roles flip with it:
+     chrome-paper is now the *dark* ink-like accent, chrome-ink the *light*
+     paper-like one. Every call site was written as "the light one" /
+     "the dark one" via these two names, so the names stay and only the
+     values swap direction. */
+  --color-chrome-paper: #1d1a17;
+  --color-chrome-ink: #fffdf7;
+
+  /* The old blue/ochre pair was validated for colour-vision deficiency
+     against a *dark* chat-chrome ground (ΔE 24.1 protan / 22.5 tritan). The
+     chrome is a light panel now and the pair below is separated on
+     lightness as well as hue, but it has not been re-run through the
+     dataviz skill's validator — do that before shipping this palette. */
+  --color-chart-automated: #e0551f;
+  --color-chart-escalated: #8a6a1f;
+
+  --font-display: var(--font-instrument-serif), "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-sans: var(--font-archivo), "Archivo", "Helvetica Neue", Arial, sans-serif;
 
   --radius-chip: 10px;
   --radius-card: 16px;
   --radius-panel: 22px;
 
-  --shadow-float: 0 32px 80px -28px rgb(13 20 38 / 0.35), 0 4px 14px -6px rgb(13 20 38 / 0.18);
-  --shadow-lift: 0 18px 40px -24px rgb(13 20 38 / 0.22);
+  --shadow-float: 0 32px 80px -28px rgb(29 26 23 / 0.3), 0 4px 14px -6px rgb(29 26 23 / 0.2);
+  --shadow-lift: 0 18px 40px -24px rgb(29 26 23 / 0.2);
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -179,6 +214,42 @@
   50% {
     opacity: 1;
     transform: scale(1.04);
+  }
+}
+
+/* A long idle sheen crossing a primary button. */
+@keyframes m-sheen {
+  from {
+    transform: translate3d(-140%, 0, 0);
+  }
+  to {
+    transform: translate3d(320%, 0, 0);
+  }
+}
+
+/* Ambient warmth behind the hero — a slow, small drift so it reads as
+   alive rather than as a static gradient. */
+@keyframes m-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(2deg);
+  }
+}
+
+/* An expanding, fading ring — used on the agent mark while it is composing
+   a reply, so "Lumi is thinking" reads at a glance. */
+@keyframes m-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklch, var(--color-indigo) 34%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
   }
 }
 
@@ -307,10 +378,6 @@
     border-radius: 4px;
   }
 
-  .dark-field :focus-visible {
-    outline-color: #9fb4dd;
-  }
-
   button,
   input,
   select {
@@ -325,34 +392,42 @@
 
 @layer components {
   /* Type scale ------------------------------------------------------ */
+  /* Headlines move to the editorial serif; body/lead/small/micro stay on
+     Archivo below. Archivo's tight tracking doesn't transfer to a serif, so
+     weight drops to the serif's own regular cut and letter-spacing/line-height
+     relax accordingly. */
   .t-display {
     /* Floor is set so the longest word in the hero ("conversation") still fits
        a 360px screen without breaking. */
+    font-family: var(--font-display);
     font-size: clamp(2.6rem, 6vw, 5.25rem);
-    font-weight: 600;
-    letter-spacing: -0.042em;
-    line-height: 0.94;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
   }
 
   .t-h1 {
+    font-family: var(--font-display);
     font-size: clamp(2.45rem, 5.1vw, 4.1rem);
-    font-weight: 580;
-    letter-spacing: -0.034em;
-    line-height: 1;
-  }
-
-  .t-h2 {
-    font-size: clamp(1.95rem, 3.4vw, 2.9rem);
-    font-weight: 570;
-    letter-spacing: -0.028em;
+    font-weight: 400;
+    letter-spacing: -0.022em;
     line-height: 1.06;
   }
 
-  .t-h3 {
-    font-size: clamp(1.3rem, 1.7vw, 1.6rem);
-    font-weight: 560;
+  .t-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.95rem, 3.4vw, 2.9rem);
+    font-weight: 400;
     letter-spacing: -0.02em;
-    line-height: 1.18;
+    line-height: 1.1;
+  }
+
+  .t-h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.7vw, 1.6rem);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
   }
 
   .t-lead {
@@ -485,15 +560,20 @@
   }
 
   .dark-field .spine-node[data-actor="lumi"]::before {
-    background: #8ea8d8;
-    border-color: #8ea8d8;
+    /* Was a hardcoded light-blue chosen for contrast on a near-black
+       background. dark-field is a light panel now, so this is the same
+       coral accent the non-dark-field spine uses above. */
+    background: var(--color-indigo);
+    border-color: var(--color-indigo);
   }
 
-  /* Hairline grid used behind dark product surfaces. */
+  /* Hairline grid, tuned for texture on paper rather than for contrast on a
+     near-black ground — the "dark" product surfaces it sits behind
+     (LiveDemo, Analytics) are light panels in this palette. */
   .grid-field {
     background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+      linear-gradient(to right, color-mix(in oklch, var(--color-line) 70%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklch, var(--color-line) 70%, transparent) 1px, transparent 1px);
     background-size: 56px 56px;
   }
 
@@ -598,17 +678,79 @@
     animation-delay: 900ms;
   }
 
-  /* Every card that can be hovered lifts the same way and at the same speed. */
+  /* Every card that can be hovered lifts the same way and at the same speed,
+     and its border warms toward the accent. */
   .card-lift {
     transition:
-      transform var(--motion-base) var(--ease-out-expo),
-      box-shadow var(--motion-base) var(--ease-out-expo),
-      border-color var(--motion-base) var(--ease-out-expo);
+      transform 360ms var(--ease-out-quint),
+      box-shadow 360ms var(--ease-out-quint),
+      border-color 360ms var(--ease-out-quint);
   }
 
   .card-lift:hover {
-    transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -6px, 0);
     box-shadow: var(--shadow-lift);
+    border-color: var(--color-indigo);
+  }
+
+  /* An image inside a clipped (overflow-hidden) parent, settling closer on
+     hover. Pair with a parent that clips — ProductCard and the story/blog
+     cards already do. */
+  .img-zoom {
+    transition: transform 700ms var(--ease-out-quint);
+  }
+
+  .img-zoom:hover,
+  .group:hover .img-zoom {
+    transform: scale(1.05);
+  }
+
+  /* A long idle sheen crossing a primary button — a thin, clipped band that
+     sweeps once every few seconds. Off entirely under reduced motion. */
+  .btn-sheen {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-sheen::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 42%;
+    background: linear-gradient(
+      115deg,
+      transparent,
+      rgb(255 255 255 / 0.35),
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-sheen::after {
+      animation: m-sheen 3.4s var(--ease-out-quint) infinite;
+      animation-delay: 1.2s;
+    }
+  }
+
+  /* Ambient drifting warmth behind the hero. */
+  .hero-bloom {
+    background: radial-gradient(38rem 38rem at 22% 35%, var(--color-ochre-tint), transparent 70%);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-bloom {
+      animation: m-drift 15s var(--ease-out-quint) infinite;
+    }
+  }
+
+  /* On LumiMark while the agent is composing a reply. */
+  @media (prefers-reduced-motion: no-preference) {
+    .mark-pulse {
+      animation: m-pulse-ring 1.6s var(--ease-out-quint) infinite;
+    }
   }
 
   .marquee {
@@ -687,9 +829,10 @@
   }
 
   /* Route transition. `both` keeps the resolved state when the reduced-motion
-     rule collapses the duration. */
+     rule collapses the duration. Fast rather than entrance-slow — this fires
+     on every navigation, not once on load. */
   .page-enter {
-    animation: page-enter 380ms var(--ease-out-quint) both;
+    animation: page-enter var(--motion-fast) var(--ease-out-quint) both;
   }
 }
 

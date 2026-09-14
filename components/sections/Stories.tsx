@@ -16,7 +16,7 @@ export function Stories() {
         <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
           {STORIES.map((story, index) => (
             <Reveal key={story.brand} delay={index * 90}>
-              <article className="card-lift flex h-full flex-col rounded-card">
+              <article className="group card-lift flex h-full flex-col rounded-card">
                 {/* Fixed ratio across all three, so the cards stay on a shared
                     baseline even though the source images differ. */}
                 <div className="relative aspect-[4/3] overflow-hidden rounded-card">
@@ -24,6 +24,7 @@ export function Stories() {
                     name={story.image as AssetKey}
                     fill
                     sizes="(max-width: 768px) 100vw, 32vw"
+                    className="img-zoom"
                   />
                 </div>
 
@@ -51,9 +52,11 @@ export function Stories() {
                   </div>
                   <div className="bg-paper-raised p-4">
                     <dt className="t-micro">After</dt>
+                    {/* Sage: the number on the far side of automation —
+                        the same role it carries in Analytics and Security. */}
                     <dd
                       data-numeric
-                      className="mt-1 text-[1.25rem] font-medium tracking-[-0.03em] text-indigo"
+                      className="mt-1 text-[1.25rem] font-medium tracking-[-0.03em] text-sage"
                     >
                       {story.after.value}
                     </dd>

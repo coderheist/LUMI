@@ -1,13 +1,12 @@
 import { Analytics } from "@/components/sections/Analytics";
-import { Channels } from "@/components/sections/Channels";
 import { Discovery } from "@/components/sections/Discovery";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Handoff } from "@/components/sections/Handoff";
 import { Hero } from "@/components/sections/Hero";
-import { Integrations } from "@/components/sections/Integrations";
 import { Knowledge } from "@/components/sections/Knowledge";
 import { LiveDemo } from "@/components/sections/LiveDemo";
-import { PricingPlans } from "@/components/sections/Pricing";
+import { MidCta } from "@/components/sections/MidCta";
+import { Faq, PricingPlans } from "@/components/sections/Pricing";
 import { Problem } from "@/components/sections/Problem";
 import { Roi } from "@/components/sections/Roi";
 import { Security } from "@/components/sections/Security";
@@ -25,15 +24,15 @@ export default function HomePage() {
       <LiveDemo />
       <UseCases />
       <Showcase />
+      <MidCta />
       <Discovery />
-      <Channels />
       <Knowledge />
-      <Integrations />
       <Handoff />
       <Analytics />
       <Roi />
       <Security />
       <Stories />
+      <Faq />
       <PricingPlans />
       <FinalCta />
     </>

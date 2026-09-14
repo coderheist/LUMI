@@ -1,9 +1,17 @@
 import { ProductTag } from "@/components/lumi/ProductCard";
 import { Recommender } from "@/components/lumi/Recommender";
+import { ChannelsContent } from "@/components/sections/Channels";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 
+/**
+ * Discovery and Channels used to be two full Sections back to back — same
+ * content, but each paying the section's own top/bottom padding. Folding
+ * Channels in as a second, internally-divided block keeps both stories and
+ * halves that padding, which is the point: fewer full-height beats in the
+ * run between Showcase and Pricing, not less content.
+ */
 export function Discovery() {
   return (
     <Section id="discovery" tone="sunken" space="loose">
@@ -42,6 +50,10 @@ export function Discovery() {
             </p>
           </div>
         </div>
+      </div>
+
+      <div id="channels" className="shell mt-20 border-t border-line pt-16 md:mt-28 md:pt-20">
+        <ChannelsContent />
       </div>
     </Section>
   );

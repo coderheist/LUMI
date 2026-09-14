@@ -595,11 +595,18 @@ export const ROI_INPUTS = [
 
 /* ------------------------------------------------------------------ Pricing */
 
+/**
+ * Price is given for both billing cycles so the toggle in <PricingPlans>
+ * has something to switch to — annual is the usual ~20% discount, expressed
+ * as a monthly-equivalent figure since that is what sits next to "Starter"
+ * and "Growth" either way. Scale has no numeric price in either cycle, so
+ * both sides read the same.
+ */
 export const PLANS = [
   {
     name: "Starter",
-    price: "$49",
-    cadence: "per month",
+    price: { monthly: "$49", annual: "$39" },
+    cadence: { monthly: "per month", annual: "per month, billed annually" },
     audience: "For small brands getting their first agent live.",
     cta: "Start free",
     featured: false,
@@ -614,8 +621,8 @@ export const PLANS = [
   },
   {
     name: "Growth",
-    price: "$149",
-    cadence: "per month",
+    price: { monthly: "$149", annual: "$119" },
+    cadence: { monthly: "per month", annual: "per month, billed annually" },
     audience: "For ecommerce teams running support as a channel.",
     cta: "Start free",
     featured: true,
@@ -631,8 +638,8 @@ export const PLANS = [
   },
   {
     name: "Scale",
-    price: "Custom",
-    cadence: "annual",
+    price: { monthly: "Custom", annual: "Custom" },
+    cadence: { monthly: "annual", annual: "annual" },
     audience: "For larger brands with compliance and volume requirements.",
     cta: "Talk to sales",
     featured: false,
@@ -646,6 +653,12 @@ export const PLANS = [
     limits: "Sandbox and staging environments",
   },
 ] as const;
+
+/** Shown next to the toggle — the saving is computed from the two Starter
+ *  prices above rather than hand-typed, so it can't drift out of sync. */
+export const ANNUAL_DISCOUNT = Math.round(
+  (1 - Number(PLANS[0].price.annual.replace("$", "")) / Number(PLANS[0].price.monthly.replace("$", ""))) * 100,
+);
 
 export const PLAN_MATRIX = [
   { feature: "AI conversations", starter: "1,000 / mo", growth: "10,000 / mo", scale: "Volume pricing" },

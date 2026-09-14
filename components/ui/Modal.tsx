@@ -42,7 +42,7 @@ export function Modal({
         if (event.target === ref.current) onClose();
       }}
       aria-label={title}
-      className="m-auto w-[min(62rem,calc(100vw-2rem))] rounded-panel border border-line bg-paper-raised p-0 text-ink shadow-float backdrop:bg-indigo-ink/70 backdrop:backdrop-blur-sm"
+      className="m-auto w-[min(62rem,calc(100vw-2rem))] rounded-panel border border-line bg-paper-raised p-0 text-ink shadow-float backdrop:bg-ink/60 backdrop:backdrop-blur-sm"
     >
       <div className="flex items-center justify-between gap-4 border-b border-line px-5 py-4">
         <h2 className="text-[1rem] font-medium tracking-[-0.015em]">{title}</h2>

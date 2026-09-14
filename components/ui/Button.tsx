@@ -6,8 +6,9 @@ type Size = "sm" | "md" | "lg";
 
 const VARIANTS: Record<Variant, string> = {
   // Ink, not indigo: the primary action belongs to the merchant's own UI.
+  // btn-sheen adds the idle light-sweep — see globals.css.
   primary:
-    "bg-ink text-paper border border-ink hover:bg-ink-hover active:translate-y-px",
+    "btn-sheen bg-ink text-paper border border-ink hover:bg-ink-hover active:translate-y-px",
   // Indigo is Lumi's colour — used where the action starts the agent.
   accent:
     "bg-indigo text-white border border-indigo hover:bg-indigo-hover active:translate-y-px",
@@ -15,8 +16,13 @@ const VARIANTS: Record<Variant, string> = {
     "bg-transparent text-ink border border-line-strong hover:border-ink hover:bg-ink/[0.03] active:translate-y-px",
   quiet:
     "bg-transparent text-ink-soft border border-transparent hover:text-ink active:translate-y-px",
+  // Used on the full-bleed CTAs (FinalCta, MidCta), so it reaches for the
+  // chrome pair rather than the themable paper/ink — see that token's
+  // comment in globals.css. chrome-paper/-ink are dark/light in this
+  // palette, so hover moves toward ink-hover rather than white: white would
+  // wash out the (light) chrome-ink text sitting on top of it.
   inverse:
-    "bg-paper text-ink border border-paper hover:bg-white active:translate-y-px",
+    "bg-chrome-paper text-chrome-ink border border-chrome-paper hover:bg-ink-hover active:translate-y-px",
 };
 
 const SIZES: Record<Size, string> = {

@@ -1,6 +1,7 @@
 "use client";
 
 import { LumiMark } from "@/components/lumi/Chat";
+import { IntegrationsContent } from "@/components/sections/Integrations";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHead } from "@/components/ui/Section";
 import { KNOWLEDGE_SOURCES, POLICY_SCRIPT } from "@/lib/data";
@@ -8,7 +9,14 @@ import { useInView, useRetrieval } from "@/lib/hooks";
 
 const CONNECTORS = ["Upload PDF", "Connect Shopify", "Connect help centre", "Sync product catalogue"];
 
-export function Knowledge() {
+/**
+ * Knowledge and Integrations used to be two full Sections back to back —
+ * same content, but each paying the section's own top/bottom padding.
+ * Folding Integrations in as a second, internally-divided block keeps both
+ * stories and halves that padding: fewer full-height beats in the run
+ * between Showcase and Pricing, not less content.
+ */
+export function Knowledge({ withIntegrations = true }: { withIntegrations?: boolean }) {
   const [ref, inView] = useInView<HTMLDivElement>({ threshold: 0.2 });
   const indexing = useRetrieval(KNOWLEDGE_SOURCES.length, {
     active: inView,
@@ -102,7 +110,7 @@ export function Knowledge() {
                 <div className="flex gap-3">
                   <LumiMark />
                   <div className="min-w-0 flex-1">
-                    <p className="rounded-[16px] rounded-bl-[5px] border border-line border-l-2 border-l-indigo bg-white px-3.5 py-2.5 text-[0.95rem] leading-relaxed">
+                    <p className="rounded-[16px] rounded-bl-[5px] border border-line border-l-2 border-l-indigo bg-paper-raised px-3.5 py-2.5 text-[0.95rem] leading-relaxed">
                       {POLICY_SCRIPT.answer}
                     </p>
                     <p className="t-micro mt-2">Source: {POLICY_SCRIPT.citation}</p>
@@ -118,6 +126,12 @@ export function Knowledge() {
           </div>
         </div>
       </div>
+
+      {withIntegrations ? (
+        <div id="integrations" className="shell mt-20 border-t border-line pt-16 md:mt-28 md:pt-20">
+          <IntegrationsContent />
+        </div>
+      ) : null}
     </Section>
   );
 }

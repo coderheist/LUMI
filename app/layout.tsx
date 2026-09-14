@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo } from "next/font/google";
+import { Archivo, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { LumiWidget } from "@/components/lumi/LumiWidget";
 import { Footer } from "@/components/site/Footer";
@@ -10,6 +10,14 @@ const archivo = Archivo({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-archivo",
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-instrument-serif",
 });
 
 const TITLE = `${BRAND.name} — ${BRAND.tagline}`;
@@ -52,10 +60,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f5f2" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d1426" },
-  ],
+  themeColor: "#fff9ef",
   colorScheme: "light",
 };
 
@@ -75,7 +80,7 @@ const STRUCTURED_DATA = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={BRAND.locale} className={archivo.variable}>
+    <html lang={BRAND.locale} className={`${archivo.variable} ${instrumentSerif.variable}`}>
       <body>
         {/* Scroll reveals are a progressive enhancement: without JS the
             content is simply present. */}

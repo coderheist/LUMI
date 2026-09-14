@@ -20,6 +20,7 @@ export function ChatShell({
   tone = "paper",
   bodyClassName = "",
   bodyRef,
+  typing = false,
 }: {
   children: ReactNode;
   channel: string;
@@ -31,6 +32,9 @@ export function ChatShell({
   tone?: "paper" | "dark";
   bodyClassName?: string;
   bodyRef?: React.Ref<HTMLDivElement>;
+  /** True while the agent is composing its reply — pulses the mark in the
+   *  header so "Lumi is thinking" reads at a glance. */
+  typing?: boolean;
 }) {
   const dark = tone === "dark";
 
@@ -45,17 +49,17 @@ export function ChatShell({
           dark ? "border-indigo-line" : "border-line"
         }`}
       >
-        <LumiMark tone={dark ? "dark" : "default"} />
+        <LumiMark tone={dark ? "dark" : "default"} pulse={typing} />
         <div className="min-w-0 flex-1">
           <p
             className={`truncate text-[0.82rem] font-medium tracking-[-0.01em] ${
-              dark ? "text-paper" : ""
+              dark ? "text-chrome-paper" : ""
             }`}
           >
-            {BRAND.name} <span className={dark ? "text-paper/45" : "text-ink-faint"}>for</span>{" "}
+            {BRAND.name} <span className={dark ? "text-chrome-paper/45" : "text-ink-faint"}>for</span>{" "}
             {subject}
           </p>
-          <p className={`truncate text-[0.75rem] ${dark ? "text-paper/45" : "text-ink-faint"}`}>
+          <p className={`truncate text-[0.75rem] ${dark ? "text-chrome-paper/45" : "text-ink-faint"}`}>
             {channel}
           </p>
         </div>
@@ -86,12 +90,15 @@ export function ChatShell({
 export function LumiMark({
   className = "",
   tone = "default",
+  pulse = false,
 }: {
   className?: string;
   /** Lifted on dark surfaces, or bare when the parent already supplies one.
    *  A prop rather than a bg-* override, so two equal-specificity utilities
    *  never race on stylesheet order. */
   tone?: "default" | "dark" | "bare";
+  /** True while the agent is composing a reply. */
+  pulse?: boolean;
 }) {
   const background =
     tone === "dark" ? "bg-indigo-dark-mark" : tone === "bare" ? "" : "bg-indigo";
@@ -99,7 +106,7 @@ export function LumiMark({
   return (
     <span
       aria-hidden
-      className={`grid h-7 w-7 shrink-0 place-items-center rounded-[9px] ${background} ${className}`}
+      className={`grid h-7 w-7 shrink-0 place-items-center rounded-[9px] ${background} ${pulse ? "mark-pulse" : ""} ${className}`}
     >
       <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="#fff" strokeWidth="1.6">
         <path d="M4 13.5c2.4 0 3.1-2.2 3.6-4.2C8.1 7 8.8 5 11 5c2.6 0 3.4 2.6 2.2 4.4-1.1 1.7-3.6 1.2-3.6 1.2" strokeLinecap="round" />
@@ -113,14 +120,14 @@ type Actor = "customer" | "lumi" | "human";
 
 const ACTOR_STYLE: Record<Actor, string> = {
   customer: "rounded-[16px] rounded-br-[5px] bg-ink/[0.055] text-ink",
-  lumi: "rounded-[16px] rounded-bl-[5px] border border-line bg-white border-l-2 border-l-indigo",
-  human: "rounded-[16px] rounded-bl-[5px] border border-line bg-white border-l-2 border-l-ochre",
+  lumi: "rounded-[16px] rounded-bl-[5px] border border-line bg-paper-raised border-l-2 border-l-indigo",
+  human: "rounded-[16px] rounded-bl-[5px] border border-line bg-paper-raised border-l-2 border-l-ochre",
 };
 
 const DARK_ACTOR_STYLE: Record<Actor, string> = {
-  customer: "rounded-[16px] rounded-br-[5px] bg-white/[0.07] text-paper",
-  lumi: "rounded-[16px] rounded-bl-[5px] border border-indigo-line bg-indigo-ink-raised border-l-2 border-l-indigo-dark text-paper",
-  human: "rounded-[16px] rounded-bl-[5px] border border-indigo-line bg-indigo-ink-raised border-l-2 border-l-ochre-dark text-paper",
+  customer: "rounded-[16px] rounded-br-[5px] bg-paper-tint text-ink",
+  lumi: "rounded-[16px] rounded-bl-[5px] border border-indigo-line bg-indigo-ink-raised border-l-2 border-l-indigo-dark text-chrome-paper",
+  human: "rounded-[16px] rounded-bl-[5px] border border-indigo-line bg-indigo-ink-raised border-l-2 border-l-ochre-dark text-chrome-paper",
 };
 
 export function Turn({
@@ -145,7 +152,7 @@ export function Turn({
     >
       <div className={`px-3.5 py-2.5 text-[0.92rem] leading-[1.5] ${style}`}>
         {name ? (
-          <p className={`mb-1 text-[0.68rem] font-medium ${dark ? "text-paper/55" : "text-ink-faint"}`}>
+          <p className={`mb-1 text-[0.68rem] font-medium ${dark ? "text-chrome-paper/55" : "text-ink-faint"}`}>
             {name}
           </p>
         ) : null}
@@ -165,13 +172,13 @@ export function Typing({ shown, dark = false }: { shown: boolean; dark?: boolean
     >
       <div
         className={`inline-flex items-center gap-1.5 rounded-[16px] rounded-bl-[5px] px-3.5 py-3 ${
-          dark ? "border border-indigo-line bg-indigo-ink-raised" : "border border-line bg-white"
+          dark ? "border border-indigo-line bg-indigo-ink-raised" : "border border-line bg-paper-raised"
         }`}
       >
         {[0, 1, 2].map((index) => (
           <span
             key={index}
-            className={`h-1.5 w-1.5 rounded-full animate-dot ${dark ? "bg-paper/70" : "bg-indigo"}`}
+            className={`h-1.5 w-1.5 rounded-full animate-dot ${dark ? "bg-chrome-paper/70" : "bg-indigo"}`}
             style={{ animationDelay: `${index * 150}ms` }}
           />
         ))}
@@ -228,7 +235,7 @@ export function SourceChips({
 }) {
   return (
     <div className="turn-in flex flex-wrap items-center gap-1.5" data-shown={shown ? "true" : "false"}>
-      <span className={`text-[0.68rem] ${dark ? "text-paper/45" : "text-ink-faint"}`}>Used</span>
+      <span className={`text-[0.68rem] ${dark ? "text-chrome-paper/45" : "text-ink-faint"}`}>Used</span>
       {sources.map((source) => (
         <span
           key={source}

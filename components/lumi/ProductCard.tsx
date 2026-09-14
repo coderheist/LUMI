@@ -24,7 +24,7 @@ export function ProductCardCompact({
 
   return (
     <article
-      className="turn-in flex gap-3 overflow-hidden rounded-card border border-line bg-white p-2.5"
+      className="turn-in flex gap-3 overflow-hidden rounded-card border border-line bg-paper-raised p-2.5"
       data-shown={shown ? "true" : "false"}
       style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
     >

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FinalCta } from "@/components/sections/FinalCta";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
@@ -59,9 +60,9 @@ export default async function BlogPostPage({ params }: Params) {
         <header className="relative border-b border-line pt-32 pb-12 md:pt-40 md:pb-16">
           <div aria-hidden className="paper-field absolute inset-0 opacity-50" />
           <div className="shell-tight relative">
-            <Link href="/blog" className="t-small transition-colors duration-200 hover:text-ink">
-              All articles
-            </Link>
+            <Breadcrumbs
+              items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }, { label: post.title }]}
+            />
             <h1 className="t-h1 mt-6">{post.title}</h1>
             <p className="t-lead mt-6">{post.excerpt}</p>
             <div className="mt-8 flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-line pt-6">

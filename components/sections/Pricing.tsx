@@ -1,7 +1,13 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "motion/react";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHead } from "@/components/ui/Section";
-import { FAQS, PLANS, PLAN_MATRIX } from "@/lib/data";
+import { ANNUAL_DISCOUNT, FAQS, PLANS, PLAN_MATRIX } from "@/lib/data";
+
+type Billing = "monthly" | "annual";
 
 /**
  * Three plans, three different treatments rather than three identical cards:
@@ -9,6 +15,8 @@ import { FAQS, PLANS, PLAN_MATRIX } from "@/lib/data";
  * are separated by hairlines only.
  */
 export function PricingPlans({ heading = true }: { heading?: boolean }) {
+  const [billing, setBilling] = useState<Billing>("monthly");
+
   return (
     <Section id="pricing" space="loose" ruled={heading}>
       <div className="shell">
@@ -19,7 +27,37 @@ export function PricingPlans({ heading = true }: { heading?: boolean }) {
           />
         ) : null}
 
-        <div className={`grid gap-px overflow-hidden rounded-panel border border-line bg-line lg:grid-cols-3 ${heading ? "mt-14" : ""}`}>
+        <div className={`flex items-center justify-center gap-3 ${heading ? "mt-10" : "mb-10"}`}>
+          <span
+            className={`text-[0.9rem] transition-colors duration-200 ${billing === "monthly" ? "text-ink" : "text-ink-faint"}`}
+          >
+            Monthly
+          </span>
+          <button
+            role="switch"
+            aria-checked={billing === "annual"}
+            aria-label="Toggle annual billing"
+            onClick={() => setBilling((value) => (value === "monthly" ? "annual" : "monthly"))}
+            className="relative h-7 w-12 shrink-0 rounded-full border border-line-strong bg-paper-sunken"
+          >
+            <motion.span
+              aria-hidden
+              className="absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-indigo"
+              animate={{ x: billing === "annual" ? "20px" : "0px" }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            />
+          </button>
+          <span
+            className={`inline-flex items-center gap-1.5 text-[0.9rem] transition-colors duration-200 ${billing === "annual" ? "text-ink" : "text-ink-faint"}`}
+          >
+            Annual
+            <span className="rounded-chip border border-sage/25 bg-sage-tint px-1.5 py-0.5 text-[0.68rem] font-medium text-sage">
+              Save {ANNUAL_DISCOUNT}%
+            </span>
+          </span>
+        </div>
+
+        <div className={`grid gap-px overflow-hidden rounded-panel border border-line bg-line lg:grid-cols-3 ${heading ? "mt-10" : "mt-2"}`}>
           {PLANS.map((plan, index) => (
             <Reveal
               key={plan.name}
@@ -50,9 +88,9 @@ export function PricingPlans({ heading = true }: { heading?: boolean }) {
                   data-numeric
                   className="text-[2.6rem] font-medium tracking-[-0.045em]"
                 >
-                  {plan.price}
+                  {plan.price[billing]}
                 </span>
-                <span className="t-small">{plan.cadence}</span>
+                <span className="t-small">{plan.cadence[billing]}</span>
               </p>
 
               <ButtonLink

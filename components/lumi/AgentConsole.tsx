@@ -40,7 +40,7 @@ export function AgentConsole() {
       >
         <span
           aria-hidden
-          className="absolute inset-y-1 left-1 w-[calc(50%-0.375rem)] rounded-[7px] bg-paper transition-transform duration-[var(--motion-base)] ease-[var(--ease-out-expo)]"
+          className="absolute inset-y-1 left-1 w-[calc(50%-0.375rem)] rounded-[7px] bg-chrome-paper transition-transform duration-[var(--motion-base)] ease-[var(--ease-out-expo)]"
           style={{ transform: `translateX(calc(${active} * (100% + 0.25rem)))` }}
         />
         {CASES.map((item, index) => (
@@ -50,7 +50,7 @@ export function AgentConsole() {
             aria-selected={index === active}
             onClick={() => setActive(index)}
             className={`relative z-10 rounded-[7px] px-3.5 py-2 text-[0.85rem] font-medium transition-colors duration-[var(--motion-base)] ${
-              index === active ? "text-ink" : "text-paper/60 hover:text-paper"
+              index === active ? "text-chrome-ink" : "text-chrome-paper/60 hover:text-chrome-paper"
             }`}
           >
             {item.tab}
@@ -89,7 +89,12 @@ function Case({
 
   return (
     <div className="grid gap-4 lg:grid-cols-2 lg:gap-5">
-      <ChatShell channel={data.channel} tone="dark" bodyClassName="min-h-[20rem]">
+      <ChatShell
+        channel={data.channel}
+        tone="dark"
+        bodyClassName="min-h-[20rem]"
+        typing={opening.typing || (opening.shown >= 2 && !answered)}
+      >
         <Turn actor="customer" shown={opening.shown >= 1} name="Alex Morgan" dark>
           {script.question}
         </Turn>
@@ -124,8 +129,8 @@ function Case({
         ) : null}
 
         <div className="flex items-center justify-between gap-3">
-          <p className="text-[0.85rem] font-medium text-paper">Lumi context</p>
-          <span className="text-[0.72rem] text-paper/45">
+          <p className="text-[0.85rem] font-medium text-chrome-paper">Lumi context</p>
+          <span className="text-[0.72rem] text-chrome-paper/45">
             {answered ? "Resolved" : retrieval.checked > 0 ? "Retrieving" : "Idle"}
           </span>
         </div>
@@ -162,12 +167,12 @@ function Case({
                 <div className="min-w-0 flex-1">
                   <p
                     className={`text-[0.84rem] transition-colors duration-300 ${
-                      done ? "text-paper" : "text-paper/45"
+                      done ? "text-chrome-paper" : "text-chrome-paper/45"
                     }`}
                   >
                     {row.source}
                   </p>
-                  <p className="mt-0.5 truncate text-[0.76rem] text-paper/40">{row.detail}</p>
+                  <p className="mt-0.5 truncate text-[0.76rem] text-chrome-paper/40">{row.detail}</p>
                 </div>
               </li>
             );

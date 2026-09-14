@@ -27,6 +27,10 @@ export function Hero() {
         <BackgroundVideo name="hero-loop" priority />
       </div>
 
+      {/* Ambient warmth drifting behind the scrim — small and slow, so it
+          reads as alive rather than as a static gradient. */}
+      <div aria-hidden className="hero-bloom pointer-events-none absolute inset-0" />
+
       {/* Vertical scrim on small screens where the text sits over the footage;
           horizontal on large, where the text has its own column. The text
           needs full opacity behind it, but the photo has to actually clear by

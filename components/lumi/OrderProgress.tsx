@@ -16,10 +16,10 @@ export function OrderProgress({ dark = false, shown = true }: { dark?: boolean; 
           dark ? "border-indigo-line" : "border-line"
         }`}
       >
-        <p data-numeric className={`text-[0.88rem] font-medium ${dark ? "text-paper" : ""}`}>
+        <p data-numeric className={`text-[0.88rem] font-medium ${dark ? "text-chrome-paper" : ""}`}>
           Order {DEMO_ORDER.reference}
         </p>
-        <p className={`text-[0.75rem] ${dark ? "text-paper/45" : "text-ink-faint"}`}>
+        <p className={`text-[0.75rem] ${dark ? "text-chrome-paper/45" : "text-ink-faint"}`}>
           {DEMO_ORDER.carrier}
         </p>
       </div>
@@ -72,13 +72,13 @@ export function OrderProgress({ dark = false, shown = true }: { dark?: boolean; 
                 <p
                   className={`text-[0.88rem] leading-tight ${
                     active ? "font-medium" : ""
-                  } ${dark ? (step.state === "pending" ? "text-paper/40" : "text-paper") : step.state === "pending" ? "text-ink-faint" : "text-ink"}`}
+                  } ${dark ? (step.state === "pending" ? "text-chrome-paper/40" : "text-chrome-paper") : step.state === "pending" ? "text-ink-faint" : "text-ink"}`}
                 >
                   {step.label}
                 </p>
                 <p
                   data-numeric
-                  className={`mt-0.5 text-[0.75rem] ${dark ? "text-paper/40" : "text-ink-faint"}`}
+                  className={`mt-0.5 text-[0.75rem] ${dark ? "text-chrome-paper/40" : "text-ink-faint"}`}
                 >
                   {step.at}
                 </p>

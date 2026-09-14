@@ -45,12 +45,27 @@ export function Security() {
                 as="li"
                 key={feature.title}
                 delay={index * 60}
-                className="flex flex-col gap-1.5 border-b border-line py-5 sm:flex-row sm:gap-8"
+                className="flex gap-4 border-b border-line py-5"
               >
-                <h3 className="text-[0.98rem] font-medium tracking-[-0.015em] sm:w-[15rem] sm:shrink-0">
-                  {feature.title}
-                </h3>
-                <p className="t-small sm:flex-1">{feature.detail}</p>
+                {/* Sage: an active, already-enabled control — the same
+                    "resolved/automated" role it carries in Analytics and
+                    Stories, here meaning "already handled for you". */}
+                <svg
+                  viewBox="0 0 12 12"
+                  className="mt-1 h-3.5 w-3.5 shrink-0 text-sage"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  aria-hidden
+                >
+                  <path d="M2.5 6.3 4.7 8.5 9.5 3.7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <div className="flex flex-col gap-1.5 sm:flex-row sm:gap-8">
+                  <h3 className="text-[0.98rem] font-medium tracking-[-0.015em] sm:w-[13rem] sm:shrink-0">
+                    {feature.title}
+                  </h3>
+                  <p className="t-small sm:flex-1">{feature.detail}</p>
+                </div>
               </Reveal>
             ))}
           </ul>

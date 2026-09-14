@@ -78,7 +78,7 @@ export default function IntegrationsPage() {
         </div>
       </Section>
 
-      <Knowledge />
+      <Knowledge withIntegrations={false} />
       <FinalCta />
     </>
   );

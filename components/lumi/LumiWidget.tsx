@@ -83,6 +83,7 @@ export function LumiWidget() {
           bodyRef={bodyRef}
           bodyClassName="max-h-[22rem]"
           footer={<Composer placeholder="Ask about sizing, delivery, returns…" />}
+          typing={typing}
         >
           <Turn actor="customer" shown={shown >= 1} name="You">
             {WIDGET_SCRIPT[0].text}

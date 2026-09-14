@@ -12,7 +12,7 @@ export const contentType = "image/png";
  *
  * Colours below are literal hex, not the CSS tokens the rest of the site
  * uses — this renders at the edge as a plain image, with no access to
- * app/globals.css. If you retheme the accent, update `#243b66` here too.
+ * app/globals.css. If you retheme the accent, update `#d9401a` here too.
  */
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -24,7 +24,7 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#f7f5f2",
+          backgroundColor: "#fff9ef",
           padding: "64px 72px",
         }}
       >
@@ -34,11 +34,11 @@ export default function OpenGraphImage() {
               width: 52,
               height: 52,
               borderRadius: 14,
-              backgroundColor: "#243b66",
+              backgroundColor: "#d9401a",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#fdfcfb",
+              color: "#fffdf7",
               fontSize: 30,
               fontWeight: 700,
             }}
@@ -51,7 +51,7 @@ export default function OpenGraphImage() {
               fontSize: 34,
               fontWeight: 700,
               letterSpacing: "-0.04em",
-              color: "#171513",
+              color: "#1d1a17",
             }}
           >
             {BRAND.name}
@@ -60,7 +60,7 @@ export default function OpenGraphImage() {
             style={{
               marginLeft: "auto",
               fontSize: 20,
-              color: "#6a655d",
+              color: "#5c534a",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
             }}
@@ -76,7 +76,7 @@ export default function OpenGraphImage() {
             lineHeight: 1.02,
             letterSpacing: "-0.045em",
             fontWeight: 600,
-            color: "#171513",
+            color: "#1d1a17",
             maxWidth: 880,
           }}
         >
@@ -94,13 +94,13 @@ export default function OpenGraphImage() {
             <div
               style={{
                 display: "flex",
-                backgroundColor: "#ffffff",
-                border: "1px solid #e3ded6",
-                borderLeft: "4px solid #243b66",
+                backgroundColor: "#fffdf7",
+                border: "1px solid #f0e3d2",
+                borderLeft: "4px solid #d9401a",
                 borderRadius: 16,
                 padding: "18px 22px",
                 fontSize: 24,
-                color: "#171513",
+                color: "#1d1a17",
               }}
             >
               Your order is out for delivery — arriving today.
@@ -114,8 +114,8 @@ export default function OpenGraphImage() {
                     marginRight: 10,
                     padding: "8px 14px",
                     borderRadius: 9,
-                    backgroundColor: "#e8ebf2",
-                    color: "#243b66",
+                    backgroundColor: "#fff2e2",
+                    color: "#b83413",
                     fontSize: 19,
                     fontWeight: 600,
                   }}
@@ -126,7 +126,7 @@ export default function OpenGraphImage() {
             </div>
           </div>
 
-          <div style={{ display: "flex", fontSize: 21, color: "#6a655d" }}>
+          <div style={{ display: "flex", fontSize: 21, color: "#5c534a" }}>
             Answers · Recommends · Resolves
           </div>
         </div>

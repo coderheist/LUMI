@@ -12,12 +12,12 @@ export function ReturnAction({ dark = false, shown = true }: { dark?: boolean; s
   const [created, setCreated] = useState(false);
 
   const rowClass = dark ? "border-indigo-line" : "border-line";
-  const mutedClass = dark ? "text-paper/45" : "text-ink-faint";
+  const mutedClass = dark ? "text-chrome-paper/45" : "text-ink-faint";
 
   return (
     <div className="turn-in" data-shown={shown ? "true" : "false"}>
       <div className={`flex items-baseline justify-between gap-3 border-b pb-3 ${rowClass}`}>
-        <p data-numeric className={`text-[0.88rem] font-medium ${dark ? "text-paper" : ""}`}>
+        <p data-numeric className={`text-[0.88rem] font-medium ${dark ? "text-chrome-paper" : ""}`}>
           Order {RETURN_CASE.order}
         </p>
         <p className={`text-[0.75rem] ${mutedClass}`}>{RETURN_CASE.item}</p>
@@ -31,7 +31,7 @@ export function ReturnAction({ dark = false, shown = true }: { dark?: boolean; s
         ].map((row) => (
           <div key={row.term} className="flex items-baseline justify-between gap-4">
             <dt className={`text-[0.82rem] ${mutedClass}`}>{row.term}</dt>
-            <dd data-numeric className={`text-[0.82rem] ${dark ? "text-paper" : "text-ink"}`}>
+            <dd data-numeric className={`text-[0.82rem] ${dark ? "text-chrome-paper" : "text-ink"}`}>
               {row.value}
             </dd>
           </div>
@@ -63,7 +63,7 @@ export function ReturnAction({ dark = false, shown = true }: { dark?: boolean; s
             dark ? "border-indigo-line bg-indigo-ink-raised" : "border-line bg-paper-sunken"
           }`}
         >
-          <p className={`text-[0.84rem] font-medium ${dark ? "text-paper" : "text-ink"}`}>
+          <p className={`text-[0.84rem] font-medium ${dark ? "text-chrome-paper" : "text-ink"}`}>
             Return created
           </p>
           <p className={`mt-1 text-[0.78rem] ${mutedClass}`}>Refund to {RETURN_CASE.refundTo}</p>
@@ -79,7 +79,7 @@ export function ReturnAction({ dark = false, shown = true }: { dark?: boolean; s
           onClick={() => setCreated(true)}
           className={`mt-3 w-full rounded-[10px] px-3 py-2.5 text-[0.85rem] font-medium transition-colors duration-200 ${
             dark
-              ? "bg-paper text-ink hover:bg-white"
+              ? "bg-chrome-paper text-chrome-ink hover:bg-ink-hover"
               : "bg-ink text-paper hover:bg-ink-hover"
           }`}
         >

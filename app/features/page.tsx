@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Analytics } from "@/components/sections/Analytics";
-import { Channels } from "@/components/sections/Channels";
 import { DemoButton } from "@/components/sections/DemoButton";
 import { Discovery } from "@/components/sections/Discovery";
 import { FinalCta } from "@/components/sections/FinalCta";
@@ -36,7 +35,6 @@ export default function FeaturesPage() {
       <LiveDemo />
       <Knowledge />
       <Discovery />
-      <Channels />
       <Handoff />
       <Analytics />
       <Security />

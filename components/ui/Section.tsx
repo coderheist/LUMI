@@ -6,7 +6,13 @@ const TONES: Record<Tone, string> = {
   paper: "bg-paper text-ink",
   sunken: "bg-paper-sunken text-ink",
   raised: "bg-paper-raised text-ink",
-  dark: "dark-field bg-indigo-ink text-paper",
+  // Tone name kept as "dark" even though there are no dark surfaces in this
+  // palette — it still means what it always meant: the loud band that
+  // breaks up the paper run. Every consumer (LiveDemo, Analytics, MidCta)
+  // reads tone="dark" to mean "the emphatic beat", so renaming it would
+  // touch five section files for a label that's now a role, not a literal
+  // description.
+  dark: "dark-field bg-paper-sunken text-ink",
 };
 
 type SectionProps = {

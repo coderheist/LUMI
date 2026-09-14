@@ -74,11 +74,19 @@ function isOnScreen(node: Element, bottomMargin: number) {
 /**
  * Fires once when the element scrolls into view. Demos use this so they
  * start playing when the visitor actually reaches them.
+ *
+ * The geometry fallback below (`isOnScreen`) checks against `window.innerHeight`,
+ * which assumes the implicit root — the browser viewport. That holds for a
+ * normal page. If this site is ever mounted inside its own scrolling
+ * container, pass an explicit `root` so the observer targets that container,
+ * and know the fallback still measures against the window: a missed event in
+ * that embedding degrades to content staying revealed (see `.reveal`'s
+ * default) rather than a blank page, but the fallback itself won't catch it.
  */
 export function useInView<T extends HTMLElement = HTMLDivElement>(
-  options: { rootMargin?: string; threshold?: number; once?: boolean } = {},
+  options: { root?: Element | null; rootMargin?: string; threshold?: number; once?: boolean } = {},
 ): [React.RefObject<T | null>, boolean] {
-  const { rootMargin = "0px 0px -12% 0px", threshold = 0.25, once = true } = options;
+  const { root = null, rootMargin = "0px 0px -12% 0px", threshold = 0.25, once = true } = options;
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
 
@@ -117,7 +125,7 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
                 }
               }
             },
-            { rootMargin, threshold },
+            { root, rootMargin, threshold },
           );
 
     observer?.observe(node);
@@ -127,7 +135,7 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
       stopWatching();
       observer?.disconnect();
     };
-  }, [rootMargin, threshold, once]);
+  }, [root, rootMargin, threshold, once]);
 
   return [ref, inView];
 }

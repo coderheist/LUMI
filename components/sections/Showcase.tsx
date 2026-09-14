@@ -15,9 +15,11 @@ export function Showcase() {
         className="relative h-[22rem] overflow-hidden sm:h-[28rem] lg:h-[34rem]"
       >
         <Media name="lifestyle-group" fill sizes="100vw" className="parallax-media" />
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent" />
+        {/* Was a dark wash for light caption text — this palette has no dark
+            surfaces, so a paper wash grounds the caption instead. */}
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-paper via-paper/40 to-transparent" />
         <div className="shell absolute inset-x-0 bottom-0 pb-10">
-          <p className="max-w-[24ch] text-[1.6rem] font-medium leading-tight tracking-[-0.03em] text-paper md:text-[2.1rem]">
+          <p className="max-w-[24ch] text-[1.6rem] font-medium leading-tight tracking-[-0.03em] text-ink md:text-[2.1rem]">
             NOVA sells 412 products. Lumi has read every one of them.
           </p>
         </div>

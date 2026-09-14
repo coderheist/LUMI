@@ -20,7 +20,7 @@ export function Recommender() {
 
   return (
     <div ref={ref}>
-      <ChatShell channel="Website · nova.com" bodyClassName="min-h-[19rem]">
+      <ChatShell channel="Website · nova.com" bodyClassName="min-h-[19rem]" typing={typing}>
         <Turn actor="customer" shown={shown >= 1} name="Alex Morgan">
           {DISCOVERY_SCRIPT.question}
         </Turn>
